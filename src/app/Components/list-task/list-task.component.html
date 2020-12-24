@@ -1,0 +1,45 @@
+<div id="back">
+  <div class="example-container">
+    <h2>added</h2>
+  
+    <div
+      cdkDropList
+      #addedList="cdkDropList"
+      [cdkDropListData]="added"
+      [cdkDropListConnectedTo]="[todoList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)"
+      >
+      <div class="example-box" *ngFor="let item of added" cdkDrag>
+        <div class="elem">
+          <strong>{{item.title}}</strong>
+          <small class="badge-pill bg-warning">{{item.endDate}}</small>
+        </div>
+        <p>{{item.desc}}</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="example-container">
+    <h2>todo</h2>
+  
+    <div
+      cdkDropList
+      #todoList="cdkDropList"
+      [cdkDropListData]="todo"
+      [cdkDropListConnectedTo]="[addedList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)"
+      >
+      <div class="example-box" *ngFor="let item of todo" cdkDrag>
+          <div class="elem">
+            <strong>{{item.title}}</strong>
+            <small class="badge-pill bg-warning">{{item.endDate}}</small>
+          </div>
+          <p>{{item.desc}}</p>
+      </div>
+    </div>
+  </div>
+  
+  
+</div>
