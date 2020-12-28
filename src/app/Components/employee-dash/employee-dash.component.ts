@@ -7,12 +7,17 @@ import { EmployeeService } from 'src/app/services';
   styleUrls: ['./employee-dash.component.css']
 })
 export class EmployeeDashComponent implements OnInit {
-
+  vacancy;
   constructor(
     public EmployeeService: EmployeeService
   ) { }
 
   ngOnInit(): void {
+    this.EmployeeService.employee$.subscribe(e => {
+      e.apliedJobs[0].hasOwnProperty('title')?
+      this.vacancy = e : null;
+      console.log(e);
+    });
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EmployerService } from 'src/app/services';
 
 @Component({
   selector: 'app-employer-dash',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./employer-dash.component.css']
 })
 export class EmployerDashComponent implements OnInit {
-
-  constructor() { }
+  vacancy;
+  constructor(
+    private employerService: EmployerService
+  ) { }
 
   ngOnInit(): void {
+    this.employerService.employer$.subscribe(e => {
+      e.postedJobs[0].hasOwnProperty('title') ?
+      this.vacancy = e : null;
+    });
   }
 
 }

@@ -7,7 +7,7 @@ export interface Task{
   title: string,
   desc: string,
   endDate: Date,
-  date: Date,
+  date: any,
 }
 
 @Injectable({
@@ -17,8 +17,6 @@ export class TaskService {
   showAddTask: boolean = false;
 
   constructor(
-    private employerService: EmployerService,
-    private router: Router
   ) {
    
   }

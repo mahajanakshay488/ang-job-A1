@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { EmployeeService } from './employee.service';
 import { EmployerService } from './employer.service';
@@ -25,8 +25,8 @@ export interface Vacany{
 })
 export class VacanciesService {
   vacancyRef: AngularFireList<any> = null;
-  searchVacancy = new Subject<any>();
-  activeVacancy = new Subject<any>();
+  searchVacancy = new BehaviorSubject<any>(null);
+  activeVacancy = new BehaviorSubject<any>(null);
 
   constructor(
     private db: AngularFireDatabase,

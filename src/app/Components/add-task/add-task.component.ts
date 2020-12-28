@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { EmployerService, TaskService } from 'src/app/services';
 
+
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
@@ -27,16 +28,17 @@ subs:Subscription;
 
       var date = new Date();
       task.date = `${date.getDate()} ${date.getMonth()} ${date.getFullYear()}`;
+
       const employerTask = { title, desc, endDate };
 
-      (employer.addedTasks.length === 1 && employer.addedTasks[0] !== 'object' ) ?
-        employer.addedTasks[0] = employerTask : employer.addedTasks.push(employerTask);
+      employer.addedTasks.push(employerTask);
       
       console.log('add task');
+      console.log(task);
       this.subs.unsubscribe();
+      this.taskService.showAddTask = false;
       return this.employerService.UpdateEmployer(employer);
     });
-    this.taskService.showAddTask = false;
   }
 
 }

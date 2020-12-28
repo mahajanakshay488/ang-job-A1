@@ -9,7 +9,7 @@ import { TaskService } from 'src/app/services';
 export class TaskComponent implements OnInit {
   show: boolean ;
   constructor(
-    private taskService: TaskService
+    private taskService: TaskService,
   ) { }
 
   ngOnInit(): void {

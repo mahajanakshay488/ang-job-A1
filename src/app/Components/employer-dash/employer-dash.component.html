@@ -1,41 +1,45 @@
+<ng-template #empty>
+  <p class="container mt-3 mb-3 display-4 text-primary text-info">Vacancy not found !</p>
+</ng-template>
+
 <p class="container mt-3 mb-3 display-3 text-center">List Of Vacancies</p>
-<div class="row container m-auto">
+<div *ngIf="vacancy else empty" class="row container m-auto">
     <div class="col-4">
+      <img src="{{vacancy.avatar}}" height="100" width="100" alt="...">
       <div class="list-group" id="list-tab" role="tablist">
+
+        <a routerLink='/show-task' class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" role="tab" aria-controls="messages">
+          <strong class="text-primary">Tasks</strong>
+        </a>
 
         <a routerLink='/post-job' class="list-group-item list-group-item-action ">
           <strong class="text-primary">Post New Vacancy</strong>
         </a>
 
-        <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Home</a>
-        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Profile</a>
-        <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Messages</a>
-
-        <a routerLink='/show-task' class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" role="tab" aria-controls="messages">Tasks</a>
+        <a *ngFor="let j of vacancy.postedJobs; let i = index" class="list-group-item list-group-item-action {{i===0 ? 'active' : ''}}" id="list-{{i}}-list" data-toggle="list" href="#list-{{i}}" role="tab" aria-controls="{{i}}">
+          {{j.title}}
+        </a>
         
-        <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Settings</a>
+        
+  
       </div>
     </div>
     <div class="col-8">
       <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-
+        <div *ngFor="let j of vacancy.postedJobs; let i = index" class="tab-pane fade show {{i===0 ? 'active' : ''}}" id="list-{{i}}" role="tabpanel" aria-labelledby="list-{{i}}-list">
             <div class="card p-2 container mt-3">
-                <h5 class="card-title">Card title</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <h5 class="card-title">{{j.title}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{j.role}}</h6>
                 <div class="d-flex flex-row ">
-                    <img src="../../assets/Sheryians brand logo.png" height="100" alt="...">
+                    <img src="{{vacancy.avatar}}" height="100" width="auto" alt="...">
                     <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">{{j.description}}</p>
                         <a routerLink='/jobs-desc' class="card-link">Delete Vacancy</a>
                     </div>
                 </div>
             </div>
             
         </div>
-        <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...</div>
-        <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
-        <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
       </div>
     </div>
   </div>

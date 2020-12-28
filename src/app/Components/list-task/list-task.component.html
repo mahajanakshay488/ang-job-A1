@@ -10,7 +10,11 @@
       class="example-list"
       (cdkDropListDropped)="drop($event)"
       >
-      <div class="example-box" *ngFor="let item of added" cdkDrag>
+      <div 
+      *ngFor="let item of added; let i = index" 
+      class="example-box {{i === 0 ? 'brohide' : ''}}" 
+      cdkDrag>
+
         <div class="elem">
           <strong>{{item.title}}</strong>
           <small class="badge-pill bg-warning">{{item.endDate}}</small>
@@ -31,7 +35,10 @@
       class="example-list"
       (cdkDropListDropped)="drop($event)"
       >
-      <div class="example-box" *ngFor="let item of todo" cdkDrag>
+      <div 
+      *ngFor="let item of todo; let i = index" 
+        class="example-box {{i === 0 ? 'brohide' : ''}}" 
+        cdkDrag>
           <div class="elem">
             <strong>{{item.title}}</strong>
             <small class="badge-pill bg-warning">{{item.endDate}}</small>

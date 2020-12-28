@@ -26,7 +26,7 @@ export class ListTaskComponent implements OnInit {
   drop(event: CdkDragDrop<string[]>) {
           if (event.previousContainer === event.container) {
         moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-        console.log(event.container.data, event.previousIndex, event.currentIndex);
+        //console.log(event.container.data, event.previousIndex, event.currentIndex);
         this.employerService.employer$.subscribe(employer => {
           employer.addedTasks = this.added;
           employer.todoTasks = this.todo;
@@ -37,7 +37,7 @@ export class ListTaskComponent implements OnInit {
                           event.container.data,
                           event.previousIndex,
                           event.currentIndex);
-                          console.log(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+                          //console.log(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
                           
                           this.employerService.employer$.subscribe(employer => {
                             employer.addedTasks = this.added;

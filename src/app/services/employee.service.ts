@@ -19,6 +19,7 @@ export class EmployeeService {
 
   employeeRef: AngularFireList<Employee> = null;
   employee$ : Observable<any>;
+  activeEmployeeId: any;
 
   constructor(
     private auth: AngularFireAuth,
@@ -31,6 +32,7 @@ export class EmployeeService {
         switchMap( user => {
           if(user){
             console.log('employee token Found!');
+            this.activeEmployeeId = user.uid;
             return this.db.object(`/employee/${user.uid}`).valueChanges();
           } else{
             console.log('employee token Not found!');
@@ -70,7 +72,8 @@ export class EmployeeService {
       this.router.navigate(['/employe-login']);
   }
 
-  UpdateEmployee(){
-    
+  UpdateEmployee(employee){
+    this.employeeRef.update(this.activeEmployeeId, employee);
+    console.log('employee updated!');
   }
 }
